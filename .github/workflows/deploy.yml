@@ -2,7 +2,7 @@ name: Build and deploy Vite to GitHub Pages
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
