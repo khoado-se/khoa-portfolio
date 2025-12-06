@@ -4,7 +4,7 @@ export const portfolioData: PortfolioData = {
   meta: {
     name: "Do Dang Khoa",
     title: "C# ASP.NET & ReactJS Developer",
-    location: "District 12, Ho Chi Minh City, Vietnam",
+    location: "Ho Chi Minh City, Vietnam",
     email: "dodangkhoaa1@gmail.com",
     github: "https://github.com/khoado-se",
     linkedin: "https://www.linkedin.com/in/khoa-do-139978198"
@@ -51,7 +51,7 @@ export const portfolioData: PortfolioData = {
       features: ["Unity game development", "RESTful API integration", "Database optimization", "Azure App Service deployment", "Google Play Store publication", "Cross-platform integration"],
       links: {
         repo: "https://github.com/dodangkhoaa1/iwant",
-        demo: "https://play.google.com/store/apps/details?id=com.iwant"
+        playstore: "https://play.google.com/store/apps/details?id=com.iwcompany.iwant&pcampaignid=web_share"
       }
     }
   ],

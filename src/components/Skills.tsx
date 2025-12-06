@@ -1,4 +1,8 @@
 import type { Skills as SkillsType } from '../types/portfolio';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { fadeUp, staggerContainer, staggerItem } from '../utils/animations';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface SkillsProps {
   skills: SkillsType;
@@ -7,73 +11,102 @@ interface SkillsProps {
 interface SkillCategoryProps {
   title: string;
   items: string[];
-  color: string;
+  delay?: number;
 }
 
-function SkillCategory({ title, items, color }: SkillCategoryProps) {
+function SkillCategory({ title, items, delay = 0 }: SkillCategoryProps) {
+  const { theme } = useTheme();
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h3 className={`text-xl font-semibold mb-4 ${color}`}>{title}</h3>
-      <div className="flex flex-wrap gap-2">
+    <motion.div
+      className={`${theme.card} rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl hover:scale-105`}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay }}
+    >
+      <h3 className={`text-xl font-semibold mb-4 ${theme.highlight}`}>{title}</h3>
+      <motion.div
+        className="flex flex-wrap gap-2"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {items.map((item, index) => (
-          <span
+          <motion.span
             key={index}
-            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors"
+            className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 cursor-default ${theme.sectionBg} ${theme.textSecondary}`}
+            variants={staggerItem}
+            whileHover={{ scale: 1.1, backgroundColor: "rgb(219, 234, 254)" }}
           >
             {item}
-          </span>
+          </motion.span>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
 export default function Skills({ skills }: SkillsProps) {
-  return (
-    <section className="py-20 bg-white" id="skills">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">Technical Skills</h2>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { theme } = useTheme();
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+  return (
+    <section className={`${theme.sectionBg}`} id="skills" ref={ref}>
+      <div className="container mx-auto px-6">
+        <motion.h2
+          className={`text-3xl sm:text-4xl font-bold mb-12 text-center ${theme.heading}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Technical Skills
+        </motion.h2>
+
+        <motion.div
+          className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <SkillCategory
             title="Languages"
             items={skills.languages}
-            color="text-blue-700"
+            delay={0}
           />
           <SkillCategory
             title="Frameworks"
             items={skills.frameworks}
-            color="text-green-700"
+            delay={0.1}
           />
           <SkillCategory
             title="Frontend"
             items={skills.frontend}
-            color="text-purple-700"
+            delay={0.2}
           />
           <SkillCategory
             title="Databases"
             items={skills.databases}
-            color="text-red-700"
+            delay={0.3}
           />
           <SkillCategory
             title="Cloud & DevOps"
             items={skills.cloud_devops}
-            color="text-orange-700"
+            delay={0.4}
           />
           <SkillCategory
             title="Architecture & Tools"
             items={skills.architecture_tools}
-            color="text-indigo-700"
+            delay={0.5}
           />
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-6">
           <SkillCategory
             title="Soft Skills"
             items={skills.soft_skills}
-            color="text-teal-700"
+            delay={0.6}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

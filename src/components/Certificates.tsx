@@ -1,4 +1,8 @@
 import type { Certificate } from '../types/portfolio';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { staggerContainer, staggerItem } from '../utils/animations';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface CertificatesProps {
   certificates: Certificate[];
@@ -9,16 +13,38 @@ interface CertificateCardProps {
 }
 
 function CertificateCard({ certificate }: CertificateCardProps) {
+  const { theme } = useTheme();
+
   const content = (
-    <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+    <motion.div
+      className={`${theme.card} rounded-lg shadow-lg p-6 transition-all duration-300`}
+      variants={staggerItem}
+      whileHover={{
+        scale: 1.03,
+        boxShadow: "0 15px 30px rgba(0,0,0,0.1)",
+        y: -5
+      }}
+    >
       <div className="flex items-start gap-4">
-        <div className="text-3xl">📜</div>
+        <motion.div
+          className="text-3xl"
+          animate={{
+            rotate: [0, 10, -10, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 3
+          }}
+        >
+          📜
+        </motion.div>
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-gray-800 mb-1">{certificate.name}</h3>
-          <p className="text-gray-600 text-sm">{certificate.issuer}</p>
+          <h3 className={`text-lg font-semibold ${theme.text} mb-1`}>{certificate.name}</h3>
+          <p className={`${theme.textSecondary} text-sm`}>{certificate.issuer}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 
   if (certificate.link) {
@@ -33,20 +59,36 @@ function CertificateCard({ certificate }: CertificateCardProps) {
 }
 
 export default function Certificates({ certificates }: CertificatesProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { theme } = useTheme();
+
   if (!certificates || certificates.length === 0) {
     return null;
   }
 
   return (
-    <section className="py-20 bg-white" id="certificates">
+    <section className={`${theme.sectionBg}`} ref={ref}>
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">Certificates & Achievements</h2>
+        <motion.h2
+          className={`text-3xl sm:text-4xl font-bold mb-12 text-center ${theme.heading}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          Certificates & Achievements
+        </motion.h2>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+        <motion.div
+          className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {certificates.map((certificate, index) => (
             <CertificateCard key={index} certificate={certificate} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -40,6 +40,7 @@ export interface Project {
   links: {
     repo?: string;
     demo?: string;
+    playstore?: string;
   };
 }
 
