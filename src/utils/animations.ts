@@ -4,7 +4,7 @@ export const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as any }
   }
 };
 
@@ -13,7 +13,7 @@ export const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.2, 0.8, 0.4, 1.0] }
+    transition: { duration: 0.6, ease: "easeOut" as any }
   }
 };
 
@@ -22,7 +22,7 @@ export const fadeDown = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as any }
   }
 };
 
@@ -31,7 +31,7 @@ export const fadeLeft = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as any }
   }
 };
 
@@ -40,7 +40,7 @@ export const fadeRight = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" as any }
   }
 };
 
@@ -49,7 +49,7 @@ export const scaleIn = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: "easeOut" as any }
   }
 };
 
@@ -69,13 +69,13 @@ export const staggerItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.5, ease: "easeOut" as any }
   }
 };
 
 export const hoverScale = {
   scale: 1.03,
-  transition: { duration: 0.3, ease: "easeInOut" }
+  transition: { duration: 0.3, ease: "easeInOut" as any }
 };
 
 export const hoverGlow = {
@@ -100,7 +100,7 @@ export const slideIn = (direction: 'left' | 'right' | 'up' | 'down' = 'up') => {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as any }
     }
   };
 };
@@ -113,7 +113,7 @@ export const textReveal = {
     transition: {
       duration: 0.5,
       delay: i * 0.1,
-      ease: "easeOut"
+      ease: "easeOut" as any
     }
   })
 };
@@ -128,7 +128,7 @@ export const pulseGlow = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut" as any
     }
   }
 };

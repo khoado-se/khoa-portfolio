@@ -21,7 +21,7 @@ export const themes = {
     highlight: 'text-blue-700',
     highlightColor: '#2563eb',
     project: {
-        cardHeader: 'bg-gradient-to-r from-blue-600 to-indigo-600',
+        cardHeader: 'bg-linear-to-r from-blue-600 to-indigo-600',
         short: 'text-blue-100',
         role: 'text-blue-200',
         tech: 'bg-blue-100 text-blue-700',
@@ -57,7 +57,7 @@ export const themes = {
     highlight: 'text-yellow-400',
     highlightColor: '#facc15',
     project: {
-        cardHeader: 'bg-gradient-to-r from-red-700 to-yellow-600',
+        cardHeader: 'bg-linear-to-r from-red-700 to-yellow-600',
         short: 'text-yellow-100',
         role: 'text-yellow-200',
         tech: 'bg-yellow-100 text-yellow-700',

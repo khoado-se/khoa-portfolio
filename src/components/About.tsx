@@ -18,7 +18,7 @@ export default function About({ about, goals, education, background }: AboutProp
   const { theme } = useTheme();
 
   return (
-    <section className={`py-20 ${theme.sectionBg}`} id="about">
+    <section className={`py-20 ${theme.aboutBg}`} id="about">
       <div className="container mx-auto px-6" ref={ref}>
         <motion.h2
           className={`text-3xl sm:text-4xl font-bold mb-12 text-center ${theme.heading}`}

@@ -68,7 +68,7 @@ export default function Certificates({ certificates }: CertificatesProps) {
   }
 
   return (
-    <section className={`${theme.sectionBg}`} ref={ref}>
+    <section className={`${theme.certificatesBg}`} ref={ref}>
       <div className="container mx-auto px-6">
         <motion.h2
           className={`text-3xl sm:text-4xl font-bold mb-12 text-center ${theme.heading}`}

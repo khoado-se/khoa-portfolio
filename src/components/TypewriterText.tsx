@@ -53,7 +53,7 @@ export default function TypewriterText({ texts, className = '', loop = true, onC
       {currentText}
       {showCursor && (
         <motion.span
-                  className="inline-block w-4 bg-red-500 ml-1 -skew-x-12"
+                  className="inline-block w-4 bg-red-500 ml-1 -skew-x-12 text-red-500"
                   initial={{ opacity: 1 }}
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.7, repeat: Infinity, repeatType: "reverse" }}

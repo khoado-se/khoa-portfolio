@@ -36,7 +36,7 @@ function SkillCategory({ title, items, delay = 0 }: SkillCategoryProps) {
         {items.map((item, index) => (
           <motion.span
             key={index}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 cursor-default ${theme.sectionBg} ${theme.textSecondary}`}
+            className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 cursor-default ${theme.project.tech} ${theme.textSecondary}`}
             variants={staggerItem}
             whileHover={{ scale: 1.1, backgroundColor: "rgb(219, 234, 254)" }}
           >
@@ -54,7 +54,7 @@ export default function Skills({ skills }: SkillsProps) {
   const { theme } = useTheme();
 
   return (
-    <section className={`${theme.sectionBg}`} id="skills" ref={ref}>
+    <section className={`${theme.skillsBg}`} id="skills" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.h2
           className={`text-3xl sm:text-4xl font-bold mb-12 text-center ${theme.heading}`}

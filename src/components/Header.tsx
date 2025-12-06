@@ -100,7 +100,7 @@ export default function Header({ isScrolled, onHeaderHeightChange }: HeaderProps
           initial={{ x: "100%" }}
           animate={{ x: isOpen ? "0%" : "100%" }}
           transition={{ duration: 0.3 }}
-          className={`fixed top-0 right-0 h-full w-full ${theme.background} bg-opacity-100 md:hidden flex flex-col items-center justify-center space-y-8 z-[999]`}
+          className={`fixed top-0 right-0 h-full w-full ${theme.background} bg-opacity-100 md:hidden flex flex-col items-center justify-center space-y-8 z-999`}
         >
           <button onClick={() => setIsOpen(false)} className={`absolute top-6 right-6 ${theme.text} focus:outline-none`}>
             <FaTimes size={24} />

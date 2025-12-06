@@ -1,6 +1,7 @@
+import type { Project } from '../types/portfolio';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { fadeUp, staggerContainer, staggerItem } from '../utils/animations';
+import { staggerContainer, staggerItem } from '../utils/animations';
 import { useTheme } from '../contexts/ThemeContext';
 // Import react-icons after installing: npm install react-icons
 import { FaGithub } from 'react-icons/fa';
@@ -43,7 +44,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       <div className="p-6 flex flex-col">
-        <p className={`${theme.textSecondary} mb-4 leading-relaxed flex-grow`}>{project.description}</p>
+        <p className={`${theme.textSecondary} mb-4 leading-relaxed grow`}>{project.description}</p>
 
         {project.features && (
           <motion.div
@@ -55,7 +56,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           >
             <h4 className={`font-semibold ${theme.text} mb-2`}>Key Features:</h4>
             <ul className="list-disc list-inside space-y-1">
-              {project.features.map((feature, idx) => (
+              {project.features.map((feature: string, idx: number) => (
                 <motion.li
                   key={idx}
                   className={`${theme.textSecondary} text-sm`}
@@ -74,7 +75,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="mb-4">
           <h4 className={`font-semibold ${theme.text} mb-2`}>Technologies:</h4>
           <div className="flex flex-wrap gap-2">
-            {project.tech.map((tech, idx) => (
+            {project.tech.map((tech: string, idx: number) => (
               <motion.span
                 key={idx}
                 className={`px-2 py-1 rounded text-xs font-medium ${theme.project.tech}`}
@@ -138,7 +139,7 @@ export default function Projects({ projects }: ProjectsProps) {
   const { theme } = useTheme();
 
   return (
-    <section className={`py-20 ${theme.sectionBg}`} id="projects" ref={ref}>
+    <section className={`py-20 ${theme.projectsBg}`} id="projects" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.h2
           className={`text-4xl font-bold mb-12 text-center ${theme.heading}`}

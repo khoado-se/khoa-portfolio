@@ -30,7 +30,7 @@ export default function Hero({ meta }: HeroProps) {
   };
 
   return (
-    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden ${theme.textColor}`}>
+    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden ${theme.text}`}>
       {theme.name === 'tet' && <Firework />}
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
@@ -66,7 +66,7 @@ export default function Hero({ meta }: HeroProps) {
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={fadeUp} className="italic text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent pb-4 min-h-[12rem]">
+        <motion.div variants={fadeUp} className="italic text-5xl md:text-7xl font-bold mb-4 bg-linear-to-r from-white via-blue-100 to-white bg-clip-text text-transparent pb-4 min-h-48">
           {showLine1 && (
             <div>
               <TypewriterText
