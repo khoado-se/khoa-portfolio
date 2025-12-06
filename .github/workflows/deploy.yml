@@ -2,6 +2,8 @@ name: Build and deploy Vite to GitHub Pages
 
 on:
   push:
+    branches: [ master, dev ]
+  pull_request:
     branches: [ master ]
   workflow_dispatch:
 
@@ -23,11 +25,21 @@ jobs:
         run: npm run build
 
       - name: Upload artifact for GitHub Pages
+        if: github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
+      - name: Upload build artifact for testing
+        if: github.ref == 'refs/heads/dev'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-build
+          path: ./dist
+          retention-days: 7
+
   deploy:
+    if: github.ref == 'refs/heads/master'
     needs: build
     runs-on: ubuntu-latest
     permissions:
